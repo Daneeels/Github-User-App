@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Github User App</string>
+
+    <string name="search">Search github user</string>
+    <string name="type">Type</string>
+    <string name="username">Username</string>
+    <string name="full_name">Full name</string>
+    <string name="xxxx">XXXX</string>
+    <string name="followers">Followers</string>
+    <string name="following">Following</string>
+    <string name="content_tab_text">This is Tab %1$d</string>
+</resources>
