@@ -17,11 +17,11 @@ class UserAdapter (private var listUser : List<ItemsItem> ) : RecyclerView.Adapt
     }
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
-        val (_, _, _, _, login, _, type, _, _, _, _, avatarUrl, _, _, _, _, _, _, _) = listUser[position]
+        val user = listUser[position]
 
-        Glide.with(holder.itemView.context).load(avatarUrl).into(holder.binding.avatarIV)
-        holder.binding.usernameTV.text = login
-        holder.binding.typeTV.text = type
+        Glide.with(holder.itemView.context).load(user.avatarUrl).into(holder.binding.avatarIV)
+        holder.binding.usernameTV.text = user.login
+        holder.binding.typeTV.text = user.type
 
         holder.itemView.setOnClickListener {
             val intentDetail = Intent(holder.itemView.context, DetailActivity::class.java)
