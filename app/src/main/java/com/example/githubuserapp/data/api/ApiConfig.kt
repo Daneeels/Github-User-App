@@ -1,7 +1,6 @@
-package com.example.githubuserapp.utils
+package com.example.githubuserapp.data.api
 
 import com.example.githubuserapp.BuildConfig
-import com.example.githubuserapp.api.ApiService
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit

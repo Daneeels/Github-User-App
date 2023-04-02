@@ -1,4 +1,4 @@
-package com.example.githubuserapp.fragments
+package com.example.githubuserapp.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,8 +10,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.githubuserapp.R
-import com.example.githubuserapp.adapters.UserAdapter
-import com.example.githubuserapp.models.ItemsItem
+import com.example.githubuserapp.ui.adapters.UserAdapter
+import com.example.githubuserapp.data.models.ItemsItem
 import com.example.githubuserapp.viewModels.DetailViewModel
 
 class FollowFragment : Fragment() {

@@ -1,4 +1,4 @@
-package com.example.githubuserapp.ui
+package com.example.githubuserapp.ui.activities
 
 import android.app.SearchManager
 import android.content.Context
@@ -9,8 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.githubuserapp.adapters.UserAdapter
-import com.example.githubuserapp.models.ItemsItem
+import com.example.githubuserapp.ui.adapters.UserAdapter
+import com.example.githubuserapp.data.models.ItemsItem
 import com.example.githubuserapp.R
 import com.example.githubuserapp.viewModels.MainViewModel
 import com.example.githubuserapp.databinding.ActivityMainBinding

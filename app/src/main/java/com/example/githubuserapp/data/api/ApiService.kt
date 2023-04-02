@@ -1,8 +1,8 @@
-package com.example.githubuserapp.api
+package com.example.githubuserapp.data.api
 
-import com.example.githubuserapp.models.DetailUserResponse
-import com.example.githubuserapp.models.ItemsItem
-import com.example.githubuserapp.models.UserResponse
+import com.example.githubuserapp.data.models.DetailUserResponse
+import com.example.githubuserapp.data.models.ItemsItem
+import com.example.githubuserapp.data.models.UserResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path

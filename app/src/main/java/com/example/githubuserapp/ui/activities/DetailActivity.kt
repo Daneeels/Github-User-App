@@ -1,4 +1,4 @@
-package com.example.githubuserapp.ui
+package com.example.githubuserapp.ui.activities
 
 import android.os.Bundle
 import android.view.View
@@ -8,9 +8,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.example.githubuserapp.R
-import com.example.githubuserapp.adapters.SectionsPagerAdapter
+import com.example.githubuserapp.ui.adapters.SectionsPagerAdapter
 import com.example.githubuserapp.databinding.ActivityDetailBinding
-import com.example.githubuserapp.models.DetailUserResponse
+import com.example.githubuserapp.data.models.DetailUserResponse
 import com.example.githubuserapp.viewModels.DetailViewModel
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator

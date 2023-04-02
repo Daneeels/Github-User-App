@@ -1,4 +1,4 @@
-package com.example.githubuserapp.adapters
+package com.example.githubuserapp.ui.adapters
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.githubuserapp.databinding.UserItemRowBinding
-import com.example.githubuserapp.models.ItemsItem
-import com.example.githubuserapp.ui.DetailActivity
+import com.example.githubuserapp.data.models.ItemsItem
+import com.example.githubuserapp.ui.activities.DetailActivity
 
 class UserAdapter (private var listUser : List<ItemsItem> ) : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
 
