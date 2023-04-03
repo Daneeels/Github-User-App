@@ -9,4 +9,7 @@
     <string name="followers">Followers</string>
     <string name="following">Following</string>
     <string name="content_tab_text">This is Tab %1$d</string>
+    <string name="favorite_user">Favorite Users</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="settings">Settings</string>
 </resources>

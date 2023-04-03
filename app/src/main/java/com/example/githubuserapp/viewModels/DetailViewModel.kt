@@ -1,17 +1,20 @@
 package com.example.githubuserapp.viewModels
 
+import android.app.Application
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.githubuserapp.data.models.DetailUserResponse
-import com.example.githubuserapp.data.models.ItemsItem
 import com.example.githubuserapp.data.api.ApiConfig
+import com.example.githubuserapp.data.local.FavoriteUser
+import com.example.githubuserapp.data.responses.DetailUserResponse
+import com.example.githubuserapp.data.responses.ItemsItem
+import com.example.githubuserapp.repositories.FavoriteUserRepository
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class DetailViewModel : ViewModel() {
+class DetailViewModel(application: Application) : ViewModel() {
 
     private val _user = MutableLiveData<DetailUserResponse>()
     val user: LiveData<DetailUserResponse> = _user
@@ -25,6 +28,7 @@ class DetailViewModel : ViewModel() {
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
+    private val _favoriteUserRepository: FavoriteUserRepository = FavoriteUserRepository(application)
 
     fun getDetailUserApi(username: String) {
 
@@ -39,14 +43,11 @@ class DetailViewModel : ViewModel() {
 
                 if (response.isSuccessful) {
                     _user.value = response.body()
-                }else{
-                    Log.e("Kesalahan", response.message())
                 }
-
             }
 
             override fun onFailure(call: Call<DetailUserResponse>, t: Throwable) {
-                Log.e("Kesalahan", t.message.toString())
+                Log.e("On Failure", t.message.toString())
             }
 
         })
@@ -65,14 +66,12 @@ class DetailViewModel : ViewModel() {
 
                 if (response.isSuccessful) {
                     _followers.value = response.body()
-                }else{
-                    Log.e("Kesalahan", response.message())
                 }
 
             }
 
             override fun onFailure(call: Call<List<ItemsItem>>, t: Throwable) {
-                Log.e("Kesalahan", t.message.toString())
+                Log.e("On Failure", t.message.toString())
             }
 
         })
@@ -91,17 +90,29 @@ class DetailViewModel : ViewModel() {
 
                 if (response.isSuccessful) {
                     _following.value = response.body()
-                }else{
-                    Log.e("Kesalahan", response.message())
                 }
 
             }
 
             override fun onFailure(call: Call<List<ItemsItem>>, t: Throwable) {
-                Log.e("Kesalahan", t.message.toString())
+                Log.e("On Failure", t.message.toString())
             }
 
         })
     }
+
+    fun insertToFavorites(favoriteUser : FavoriteUser){
+        _favoriteUserRepository.addFavoriteUser(favoriteUser)
+    }
+
+    fun deleteToFavorites(id : Int){
+        _favoriteUserRepository.removeFavoriteUser(id)
+    }
+
+    suspend fun getFavoriteUser(id : Int) : Int{
+        return _favoriteUserRepository.getFavoriteUser(id)
+    }
+
+
 
 }

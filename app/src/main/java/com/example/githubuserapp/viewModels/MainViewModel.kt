@@ -1,17 +1,18 @@
 package com.example.githubuserapp.viewModels
 
+import android.app.Application
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.githubuserapp.data.models.ItemsItem
-import com.example.githubuserapp.data.models.UserResponse
 import com.example.githubuserapp.data.api.ApiConfig
+import com.example.githubuserapp.data.responses.ItemsItem
+import com.example.githubuserapp.data.responses.UserResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainViewModel : ViewModel() {
+class MainViewModel(application: Application) : ViewModel() {
 
     private val _userList = MutableLiveData<List<ItemsItem>>()
     val userList: LiveData<List<ItemsItem>> = _userList
@@ -41,15 +42,13 @@ class MainViewModel : ViewModel() {
 
                 if (response.isSuccessful) {
                     _userList.value = response.body()!!.items
-                }else{
-                    Log.e("Kesalahan", response.message())
                 }
 
             }
 
             override fun onFailure(call: Call<UserResponse>, t: Throwable) {
                 _isLoading.value = false
-                Log.e("Kesalahan", t.message.toString())
+                Log.e("On Failure", t.message.toString())
             }
 
         })

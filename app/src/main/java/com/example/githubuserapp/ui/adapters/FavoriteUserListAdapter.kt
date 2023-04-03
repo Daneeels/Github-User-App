@@ -5,11 +5,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.githubuserapp.data.local.FavoriteUser
 import com.example.githubuserapp.databinding.UserItemRowBinding
-import com.example.githubuserapp.data.responses.ItemsItem
 import com.example.githubuserapp.ui.activities.DetailActivity
 
-class UserAdapter (private var listUser : List<ItemsItem> ) : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
+class FavoriteUserListAdapter (private var listFavoriteUser : List<FavoriteUser> ) : RecyclerView.Adapter<FavoriteUserListAdapter.UserViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
         val binding = UserItemRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -17,20 +17,20 @@ class UserAdapter (private var listUser : List<ItemsItem> ) : RecyclerView.Adapt
     }
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
-        val user = listUser[position]
+        val user = listFavoriteUser[position]
 
         Glide.with(holder.itemView.context).load(user.avatarUrl).into(holder.binding.avatarIV)
-        holder.binding.usernameTV.text = user.login
+        holder.binding.usernameTV.text = user.username
         holder.binding.typeTV.text = user.type
 
         holder.itemView.setOnClickListener {
             val intentDetail = Intent(holder.itemView.context, DetailActivity::class.java)
-            intentDetail.putExtra(USERNAME_KEY, listUser[holder.adapterPosition].login)
+            intentDetail.putExtra(UserAdapter.USERNAME_KEY, listFavoriteUser[holder.adapterPosition].username)
             holder.itemView.context.startActivity(intentDetail)
         }
     }
 
-    override fun getItemCount(): Int = listUser.size
+    override fun getItemCount(): Int = listFavoriteUser.size
 
     class UserViewHolder(var binding: UserItemRowBinding) : RecyclerView.ViewHolder(binding.root)
 

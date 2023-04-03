@@ -4,14 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activities.MainActivity">
-
+    tools:context=".ui.activities.FavoriteUserListActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/usersRV"
+        android:id="@+id/favoritesRV"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-         />
+        />
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -21,4 +20,5 @@
         android:visibility="gone"
         android:layout_gravity="center"
         tools:visibility="visible" />
+
 </FrameLayout>

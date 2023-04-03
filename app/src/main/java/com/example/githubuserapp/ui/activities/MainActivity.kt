@@ -2,18 +2,27 @@ package com.example.githubuserapp.ui.activities
 
 import android.app.SearchManager
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SearchView
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.githubuserapp.ui.adapters.UserAdapter
-import com.example.githubuserapp.data.models.ItemsItem
 import com.example.githubuserapp.R
-import com.example.githubuserapp.viewModels.MainViewModel
+import com.example.githubuserapp.data.local.settings.SettingPreferences
+import com.example.githubuserapp.data.responses.ItemsItem
 import com.example.githubuserapp.databinding.ActivityMainBinding
+import com.example.githubuserapp.ui.adapters.UserAdapter
+import com.example.githubuserapp.viewModels.MainViewModel
+import com.example.githubuserapp.viewModels.SettingsViewModel
+import com.example.githubuserapp.viewModels.ViewModelFactory
+import com.example.githubuserapp.viewModels.ViewModelSettingsFactory
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,10 +37,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        mainViewModel = ViewModelProvider(
-            this,
-            ViewModelProvider.NewInstanceFactory()
-        )[MainViewModel::class.java]
+        mainViewModel = obtainViewModel(this@MainActivity)
 
         mainViewModel.userList.observe(this) { userList ->
             runRV(userList)
@@ -40,6 +46,7 @@ class MainActivity : AppCompatActivity() {
         mainViewModel.isLoading.observe(this) {
             showLoading(it)
         }
+
 
     }
 
@@ -62,6 +69,9 @@ class MainActivity : AppCompatActivity() {
         val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
         val searchView = menu.findItem(R.id.search).actionView as SearchView
 
+        val favoriteView = menu.findItem(R.id.favorites)
+        val settingsView = menu.findItem(R.id.settings)
+
         searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName))
         searchView.queryHint = resources.getString(R.string.search)
 
@@ -77,7 +87,30 @@ class MainActivity : AppCompatActivity() {
                 return false
             }
         })
+
+        favoriteView.setOnMenuItemClickListener {
+
+            val moveIntent = Intent(this@MainActivity, FavoriteUserListActivity::class.java)
+            startActivity(moveIntent)
+
+            return@setOnMenuItemClickListener true
+        }
+
+        settingsView.setOnMenuItemClickListener {
+
+            val moveIntent = Intent(this@MainActivity, SettingsActivity::class.java)
+            startActivity(moveIntent)
+
+            return@setOnMenuItemClickListener true
+        }
+
+
         return true
+    }
+
+    private fun obtainViewModel(activity: AppCompatActivity): MainViewModel {
+        val factory = ViewModelFactory.getInstance(activity.application)
+        return ViewModelProvider(activity, factory).get(MainViewModel::class.java)
     }
 
 }

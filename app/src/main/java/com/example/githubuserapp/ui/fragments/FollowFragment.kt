@@ -6,13 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.githubuserapp.R
+import com.example.githubuserapp.data.responses.ItemsItem
 import com.example.githubuserapp.ui.adapters.UserAdapter
-import com.example.githubuserapp.data.models.ItemsItem
 import com.example.githubuserapp.viewModels.DetailViewModel
+import com.example.githubuserapp.viewModels.ViewModelFactory
 
 class FollowFragment : Fragment() {
 
@@ -27,8 +28,10 @@ class FollowFragment : Fragment() {
         val index = arguments?.getInt(ARG_POSITION)
         val username = arguments?.getString(ARG_USERNAME)
 
-
-        val detailViewModel : DetailViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[DetailViewModel::class.java]
+        val factory: ViewModelFactory = ViewModelFactory.getInstance(requireActivity().application)
+        val detailViewModel: DetailViewModel by viewModels {
+            factory
+        }
 
         detailViewModel.isLoading.observe(viewLifecycleOwner) {
             showLoading(it)
