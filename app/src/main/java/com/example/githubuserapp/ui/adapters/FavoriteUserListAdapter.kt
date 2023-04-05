@@ -9,7 +9,8 @@ import com.example.githubuserapp.data.local.FavoriteUser
 import com.example.githubuserapp.databinding.UserItemRowBinding
 import com.example.githubuserapp.ui.activities.DetailActivity
 
-class FavoriteUserListAdapter (private var listFavoriteUser : List<FavoriteUser> ) : RecyclerView.Adapter<FavoriteUserListAdapter.UserViewHolder>() {
+class FavoriteUserListAdapter(private var listFavoriteUser: List<FavoriteUser>) :
+    RecyclerView.Adapter<FavoriteUserListAdapter.UserViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
         val binding = UserItemRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -25,7 +26,10 @@ class FavoriteUserListAdapter (private var listFavoriteUser : List<FavoriteUser>
 
         holder.itemView.setOnClickListener {
             val intentDetail = Intent(holder.itemView.context, DetailActivity::class.java)
-            intentDetail.putExtra(UserAdapter.USERNAME_KEY, listFavoriteUser[holder.adapterPosition].username)
+            intentDetail.putExtra(
+                UserAdapter.USERNAME_KEY,
+                listFavoriteUser[holder.adapterPosition].username
+            )
             holder.itemView.context.startActivity(intentDetail)
         }
     }
@@ -34,7 +38,7 @@ class FavoriteUserListAdapter (private var listFavoriteUser : List<FavoriteUser>
 
     class UserViewHolder(var binding: UserItemRowBinding) : RecyclerView.ViewHolder(binding.root)
 
-    companion object{
+    companion object {
         const val USERNAME_KEY = "username_key"
     }
 }

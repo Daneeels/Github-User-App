@@ -17,7 +17,11 @@ import com.example.githubuserapp.viewModels.ViewModelFactory
 
 class FollowFragment : Fragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_follow, container, false)
 
     }
@@ -37,18 +41,18 @@ class FollowFragment : Fragment() {
             showLoading(it)
         }
 
-        if (index == 1){
+        if (index == 1) {
             if (username != null) {
                 detailViewModel.getFollowersApi(username)
             }
-            detailViewModel.followers.observe(viewLifecycleOwner){ user ->
+            detailViewModel.followers.observe(viewLifecycleOwner) { user ->
                 setListUser(user)
             }
-        }else{
+        } else {
             if (username != null) {
                 detailViewModel.getFollowingApi(username)
             }
-            detailViewModel.following.observe(viewLifecycleOwner){ user ->
+            detailViewModel.following.observe(viewLifecycleOwner) { user ->
                 setListUser(user)
             }
         }

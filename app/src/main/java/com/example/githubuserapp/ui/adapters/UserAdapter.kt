@@ -9,7 +9,8 @@ import com.example.githubuserapp.databinding.UserItemRowBinding
 import com.example.githubuserapp.data.responses.ItemsItem
 import com.example.githubuserapp.ui.activities.DetailActivity
 
-class UserAdapter (private var listUser : List<ItemsItem> ) : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
+class UserAdapter(private var listUser: List<ItemsItem>) :
+    RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
         val binding = UserItemRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -34,7 +35,7 @@ class UserAdapter (private var listUser : List<ItemsItem> ) : RecyclerView.Adapt
 
     class UserViewHolder(var binding: UserItemRowBinding) : RecyclerView.ViewHolder(binding.root)
 
-    companion object{
+    companion object {
         const val USERNAME_KEY = "username_key"
     }
 }

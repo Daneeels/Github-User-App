@@ -1,9 +1,9 @@
 package com.example.githubuserapp.ui.activities
 
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.CompoundButton
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
@@ -12,7 +12,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.githubuserapp.R
 import com.example.githubuserapp.data.local.settings.SettingPreferences
 import com.example.githubuserapp.viewModels.SettingsViewModel
-import com.example.githubuserapp.viewModels.ViewModelFactory
 import com.example.githubuserapp.viewModels.ViewModelSettingsFactory
 import com.google.android.material.switchmaterial.SwitchMaterial
 
@@ -48,7 +47,7 @@ class SettingsActivity : AppCompatActivity() {
         }
     }
 
-    private fun setActionBar(){
+    private fun setActionBar() {
         supportActionBar?.apply {
             title = getString(R.string.settings)
             setDisplayHomeAsUpEnabled(true)

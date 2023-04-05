@@ -3,12 +3,13 @@ package com.example.githubuserapp.viewModels
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.githubuserapp.data.local.settings.SettingPreferences
 
-class ViewModelFactory private constructor(private val mApplication: Application) : ViewModelProvider.NewInstanceFactory() {
+class ViewModelFactory private constructor(private val mApplication: Application) :
+    ViewModelProvider.NewInstanceFactory() {
     companion object {
         @Volatile
         private var INSTANCE: ViewModelFactory? = null
+
         @JvmStatic
         fun getInstance(application: Application): ViewModelFactory {
             if (INSTANCE == null) {
@@ -26,7 +27,7 @@ class ViewModelFactory private constructor(private val mApplication: Application
             return MainViewModel(mApplication) as T
         } else if (modelClass.isAssignableFrom(DetailViewModel::class.java)) {
             return DetailViewModel(mApplication) as T
-        }else if (modelClass.isAssignableFrom(FavoriteUserListViewModel::class.java)) {
+        } else if (modelClass.isAssignableFrom(FavoriteUserListViewModel::class.java)) {
             return FavoriteUserListViewModel(mApplication) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")

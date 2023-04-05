@@ -7,22 +7,15 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SearchView
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.githubuserapp.R
-import com.example.githubuserapp.data.local.settings.SettingPreferences
 import com.example.githubuserapp.data.responses.ItemsItem
 import com.example.githubuserapp.databinding.ActivityMainBinding
 import com.example.githubuserapp.ui.adapters.UserAdapter
 import com.example.githubuserapp.viewModels.MainViewModel
-import com.example.githubuserapp.viewModels.SettingsViewModel
 import com.example.githubuserapp.viewModels.ViewModelFactory
-import com.example.githubuserapp.viewModels.ViewModelSettingsFactory
 
 class MainActivity : AppCompatActivity() {
 
